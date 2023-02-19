@@ -28,20 +28,16 @@ def download_random_picture():
     picture_urls = [
         "https://picsum.photos/4096/2160",
         "https://picsum.photos/3840/2160"]
-
     # Choose a random URL from the list
     picture_url = random.choice(picture_urls)
-
     # Download the picture from the URL
     response = requests.get(picture_url)
-
     # Check if the download was successful
     if response.status_code == 200:
         # Save the picture to the local file system
         with open("random_ picture.jpg", "wb") as picture_file:
             picture_file.write(response.content)
         print("Successfully downloaded random picture.")
-
     else:
         print("Failed to download random picture.")
 
@@ -57,6 +53,7 @@ def calculate_latency():
         print("Latency: {} seconds".format(latency))
     except:
         print("Error: Failed to calculate latency")
+
 
 def calculate_throughput():
     # send data to the server and measure the time taken
@@ -74,9 +71,9 @@ def calculate_throughput():
     except:
         print("Error: Failed to calculate throughput")
 
+        
 calculate_latency()
 calculate_throughput()
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True,host='0.0.0.0',port=port)
